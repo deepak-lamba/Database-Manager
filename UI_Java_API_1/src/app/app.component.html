@@ -1,0 +1,33 @@
+
+<div class="navigation-menu">
+  <button (click)="setCurrentPage('login')">Login</button>
+  <button (click)="setCurrentPage('logs')">Logs</button>
+  <button (click)="setCurrentPage('registration')">Registration</button>
+  <button (click)="setCurrentPage('messages')">Messages</button>
+  <button (click)="setCurrentPage('update_profile')">Update Profile</button>
+  <button (click)="setCurrentPage('request')">Create SQL Request</button>
+  
+  <!-- Add buttons for other pages if needed -->
+</div>
+
+<div *ngIf="currentPage === 'login'">
+  <app-login></app-login>
+</div>
+
+<div *ngIf="currentPage === 'logs'">
+  <app-logs></app-logs>
+</div>
+
+<div *ngIf="currentPage === 'registration'">
+  <app-registration></app-registration>
+</div>
+<div *ngIf="currentPage === 'messages'">
+  <app-messages></app-messages>
+</div>
+<div *ngIf="currentPage === 'update_profile'">
+  <app-update-profile></app-update-profile>
+</div>
+<div *ngIf="currentPage === 'request'">
+  <app-request></app-request>
+</div>
+<!-- Add similar divs for other components -->

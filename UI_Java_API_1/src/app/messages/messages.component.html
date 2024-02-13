@@ -1,0 +1,69 @@
+<div class="navigation-menu">
+	<button (click)="setCurrentPage('messages')">Pending Approvals</button>
+	<button (click)="setCurrentPage('mymessages')">My Messages</button>
+	<!-- Add buttons for other pages if needed -->
+</div>
+<div *ngIf="currentPage === 'messages'">
+	<div>
+		<h2>Message Center</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Requester Name</th>
+					<th>Query</th>
+					<th>Comments</th>
+					<th>Approver Name</th>
+					<th>Status</th>
+					<th>Change Status</th>
+					<th>Add Comment</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let message of logsMessage">
+					<td>{{ message.requester_name }}</td>
+					<td>{{ message.query }}</td>
+					<td>{{ message.comments }}</td>
+					<td>{{ message.approver_name }}</td>
+					<td>{{ message.status }}</td>
+					<td><select [(ngModel)]="message.newStatus">
+							<option value="Approved">Approved</option>
+							<option value="Rejected">Rejected</option>
+					</select></td>
+					<td><input type="text" [(ngModel)]="message.newComment"></td>
+					<td><button (click)="updateMessage(message)">Submit</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div *ngIf="currentPage === 'mymessages'">
+	<div>
+		<h2>Your Message Center</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Requester Name</th>
+					<th>Query</th>
+					<th>Comments</th>
+					<th>Approver Name</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let message of logsMessage">
+					<td>{{ message.requester_name }}</td>
+					<td>{{ message.query }}</td>
+					<td>{{ message.comments }}</td>
+					<td>{{ message.approver_name }}</td>
+					<td>{{ message.status }}</td>
+					<button *ngIf="message.status === 'Approved'" (click)="operation(message.query)">Execute</button>
+				</tr>
+			</tbody>
+		</table>
+		<button (click)="mymessage()">Get My Messages</button>
+	</div>
+</div>
+
+

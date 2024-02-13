@@ -1,0 +1,21 @@
+<form (ngSubmit)="submitRequest()">
+  <div>
+    <label>Requester Name:</label>
+    <input type="text" [(ngModel)]="requesterName" name="requesterName" disabled>
+  </div>
+  <div>
+    <label>Query:</label>
+    <textarea [(ngModel)]="query" name="query" required></textarea>
+  </div>
+  <div>
+    <label>Comments:</label>
+    <textarea [(ngModel)]="comments" name="comments"></textarea>
+  </div>
+  <div>
+    <label>Approver Name:</label>
+    <select [(ngModel)]="approverNameId" name="approverNameId" required (change)="onUserSelected($event)">
+     <option *ngFor="let user of userList" [value]="user.id">{{ user.name }} (ID: {{ user.id }})</option>
+    </select>
+  </div>
+  <button type="submit">Submit Request</button>
+</form>
